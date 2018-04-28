@@ -26,8 +26,15 @@ Route::group(['middleware' => ['web']],function(){
 	Route::get('/dashboard',[
 		'uses' => 'UserController@getDashboard',
 		'as' => 'dashboard',
-        'middleware' => 'auth'
+        'middleware' => ['auth','roles'],
+        'roles' => ['admin','user']
 	]);
+    Route::get('/admin', [
+        'uses' => 'UserController@getAdminPage',
+        'as' => 'admin',
+        'middleware' => ['auth','roles'],
+        'roles' => ['admin']
+    ]);
 	Route::get('/logout',[
 	    'uses' => 'UserController@logout',
         'as' => 'logout'
@@ -41,5 +48,11 @@ Route::group(['middleware' => ['web']],function(){
 		'uses' => 'UserController@postSignIn',
 		'as' => 'login'
 	]);
+    Route::post('/admin/assign-roles', [
+        'uses' => 'UserController@postAdminAssignRoles',
+        'as' => 'admin.assign',
+        'middleware' => ['auth','roles'],
+        'roles' => ['admin']
+    ]);
 	//////////post/////////////////////
 });
