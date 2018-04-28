@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Teacher extends Model
 {
     public $timestamps = false;
-    protected $primaryKey = 'NIS';
+    protected $primaryKey = 'NIP';
     public $incrementing = false;
 }
