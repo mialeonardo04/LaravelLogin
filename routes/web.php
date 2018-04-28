@@ -26,8 +26,7 @@ Route::group(['middleware' => ['web']],function(){
 	Route::get('/dashboard',[
 		'uses' => 'UserController@getDashboard',
 		'as' => 'dashboard',
-        'middleware' => ['auth','roles'],
-        'roles' => ['admin','user']
+        'middleware' => 'auth'
 	]);
     Route::get('/admin', [
         'uses' => 'UserController@getAdminPage',
