@@ -28,6 +28,14 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group {{ $errors->has('role') ? 'has-error' : ''  }}">
+                <input id="role" type="text" placeholder="role (1 for admin, 2 for user)" class="form-control" name="role">
+                @if ($errors->has('role'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('role') }}</strong>
+                    </span>
+                @endif
+            </div>
             <div class="checkbox">
                 <label>
                     Already have an account?<a href="/login">Login now</a>

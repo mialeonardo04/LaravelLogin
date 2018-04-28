@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,14 @@ class UserController extends Controller
 
     public function postSignUp(Request $request)
     {
+        $role_user = Role::where('name','user')->first();
+        $role_admin = Role::where('name','admin')->first();
+
         $this->validate($request,[
             'name' => 'required|max:120',
             'email' => 'email|unique:users',
-            'password' => 'required|min:4'
+            'password' => 'required|min:4',
+            'role' => 'required|max:1'
         ]);
     	$name = $request['name'];
     	$email = $request['email'];
@@ -39,6 +44,11 @@ class UserController extends Controller
 
         Auth::login($user);    
     	$user->save();
+    	if ($role = $request->input('role') == "1"){
+    	    $user->roles()->attach($role_admin);
+        } else {
+    	    $user->roles()->attach($role_user);
+        }
 
     	return redirect()->route('dashboard');
     }
