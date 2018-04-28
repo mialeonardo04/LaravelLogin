@@ -43,6 +43,7 @@
                         </tbody>
                     </table>
                 </div>
+                <p class="alert alert-danger">** please uncheck before check the new role</p>
             </div>
         </div>
     </div>
