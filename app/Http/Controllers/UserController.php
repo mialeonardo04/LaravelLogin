@@ -44,7 +44,7 @@ class UserController extends Controller
 
         Auth::login($user);    
     	$user->save();
-    	if ($role = $request->input('role') == "1"){
+    	if ($request['role'] == "1"){
     	    $user->roles()->attach($role_admin);
         } else {
     	    $user->roles()->attach($role_user);
