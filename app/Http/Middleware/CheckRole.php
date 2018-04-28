@@ -16,13 +16,13 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if ($request->user() === null) {
-            return response("Insufficient permissions", 401);
+            return response("Insufficient Permissions", 401);
         }
         $actions = $request->route()->getAction();
         $roles = isset($actions['roles']) ? $actions['roles'] : null;
         if ($request->user()->hasAnyRole($roles) || !$roles) {
             return $next($request);
         }
-        return response("Insufficient permissions", 401);
+        return redirect()->back()->with('messageFromAdmin','Insufficient Permissions');
     }
 }
