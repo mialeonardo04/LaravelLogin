@@ -37,7 +37,7 @@
             @if (Route::has('login'))
               @auth
                   <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Home</a>
+                    <a class="nav-link" href="/dashboard">Home(logging in as {{ Auth::user()->name }} )</a>
                   </li>
               @else
                   <li class="nav-item">
