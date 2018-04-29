@@ -31,12 +31,22 @@
                         @foreach($users as $user)
                             <tr>
                                 <form action="{{ route('admin.assign') }}" method="post">
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}"></td>
-                                    <td><input type="checkbox" {{ $user->hasRole('admin') ? 'checked' : '' }} name="role_admin"></td>
-                                    <td><input type="checkbox" {{ $user->hasRole('user') ? 'checked' : '' }} name="role_user"></td>
-                                    {{ csrf_field() }}
-                                    <td><button type="submit" class="btn btn-success btn-xs">Change Roles</button></td>
+                                    @if( Auth::user()->name == $user->name)
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}"></td>
+                                        <td><input type="checkbox" {{ $user->hasRole('admin') ? 'checked' : '' }} name="role_admin" disabled></td>
+                                        <td><input type="checkbox" {{ $user->hasRole('user') ? 'checked' : '' }} name="role_user" disabled></td>
+                                        {{ csrf_field() }}
+                                        <td><button type="submit" class="btn btn-success btn-xs" disabled>Change Roles</button></td>
+
+                                    @else
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }} <input type="hidden" name="email" value="{{ $user->email }}"></td>
+                                        <td><input type="checkbox" {{ $user->hasRole('admin') ? 'checked' : '' }} name="role_admin"></td>
+                                        <td><input type="checkbox" {{ $user->hasRole('user') ? 'checked' : '' }} name="role_user"></td>
+                                        {{ csrf_field() }}
+                                        <td><button type="submit" class="btn btn-success btn-xs">Change Roles</button></td>
+                                    @endif
                                 </form>
                             </tr>
                         @endforeach
