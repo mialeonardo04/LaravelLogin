@@ -59,7 +59,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Options<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Data Siswa</a>
+                                    <a href="/students">Data Siswa</a>
                                 </li>
                                 <li>
                                     <a href="#">Data Guru</a>

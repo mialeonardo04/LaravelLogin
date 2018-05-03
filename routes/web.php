@@ -54,4 +54,9 @@ Route::group(['middleware' => ['web']],function(){
         'roles' => ['admin']
     ]);
 	//////////post/////////////////////
+    //Route::resource('/students',[
+        //'uses' => 'StudentController',
+      //  'middleware' => ['auth']
+    //]);
+    Route::resource('/students','StudentController');
 });
