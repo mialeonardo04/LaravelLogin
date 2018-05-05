@@ -8,6 +8,9 @@
 @if(Session::has('message'))
     <div class="alert {{ Session::get('alert alert-danger', 'alert-danger') }}">{{ Session::get('message') }}</div>
 @endif
+@if(Session::has('messageFromAdmin'))
+    <div class="alert {{ Session::get('alert alert-danger', 'alert-danger') }}">{{ Session::get('messageFromAdmin') }}</div>
+@endif
 <h2 class="page-header">Create new data</h2>
 <div class="panel panel-default">
   <div class="panel-heading">

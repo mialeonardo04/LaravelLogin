@@ -25,6 +25,18 @@ class StudentController extends Controller
         return view('student.home',['students'=>$students]);
     }
 
+    public function cetakStudent(){
+        $student = Student::all();
+        return view('student.print',['students' => $student]);
+    }
+
+    public function cetakById($id){
+        $student = Student::where('slug',$id)->first();
+        if (!$student) {
+            abort(404);
+        }
+        return view('student.printbyid')->with('student',$student);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -72,7 +84,7 @@ class StudentController extends Controller
             $student->email = $request->email;
             $student->slug = str_slug($request->nama,'_');
             $student->save();
-            return redirect('/dashboard')->with('message','Data Siswa Berhasil ditambah');
+            return redirect('/students')->with('message','Data Siswa Berhasil ditambah');
         }
 
     }
@@ -142,9 +154,9 @@ class StudentController extends Controller
             $student->email = $request->email;
             $student->slug = str_slug($request->nama,'_');
             $student->save();
-            return redirect('/dashboard')->with('message','Data Siswa Berhasil diedit');
+            return redirect('/students')->with('message','Data Siswa Berhasil diedit');
         } catch (\Exception $e) {
-            return redirect('/dashboard')->with('message','Error: '.$e->getMessage().'==> NIS input tidak unik');
+            return redirect('/students')->with('message','Error: '.$e->getMessage().'==> NIS input tidak unik');
         }
 
 
@@ -161,6 +173,6 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $student->delete();
-        return redirect('/dashboard')->with('message','Data Siswa Berhasil dihapus');
+        return redirect('/students')->with('message','Data Siswa Berhasil dihapus');
     }
 }
