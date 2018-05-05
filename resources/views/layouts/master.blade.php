@@ -16,6 +16,7 @@
     <link href="{{ asset('theme/dist/css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('theme/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" sizes="114x114" href="{{ asset('theme2/img/gears.png') }}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 
 <body>
