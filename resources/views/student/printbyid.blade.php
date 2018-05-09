@@ -43,10 +43,6 @@
                 <div class="table-responsive">
                     <form id="form1">
                         <div id="dvContainer">
-                            <table>
-                                <tr><td>&nbsp;</td></tr>
-                                <tr><td>&nbsp;</td></tr>
-                            </table>
                             <table width="63%" height="303" border="0" align="center">
                                 <tr>
                                     <td height="25" colspan="3" align="center" style="margin-bottom:20px; font-size:18px; font-weight:bold">SURAT KETERANGAN AKTIF SEKOLAH</td>
@@ -156,6 +152,133 @@
                             <input class="btn btn-link" type="button" value="Print Data PDF" id="btnPrint" />
                         </center>
                     </form>
+                    <center>
+                        <button class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                            Preview
+                        </button>
+                    </center>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Preview PDF</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <table width="63%" height="303" border="0" align="center">
+                                        <tr>
+                                            <td height="25" colspan="3" align="center" style="margin-bottom:20px; font-size:18px; font-weight:bold">SURAT KETERANGAN AKTIF SEKOLAH</td>
+                                        </tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><em>Yang bertanda tangan dibawah ini :</em></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">NO SURAT</td>
+                                            <td width="99">:</td>
+                                            <td width="207">.........................</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">NIS</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->NIS}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">NAMA</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Nama}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Tempat,Tanggal Lahir</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Tempat_lahir}}, {{$student->Tanggal_lahir}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Alamat Tinggal</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Alamat}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Telp / HP</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Telepon}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Email</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+
+                                        <tr><td colspan="3"><em>Dengan ini menyatakan adalah benar seorang siswa <b>aktif</b>  SMAS CHARITAS JAKARTA, dengan biodata asal:</em></td></tr>
+                                        <tr>
+                                            <td width="297" height="25">Nama Ayah</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Nama_ayah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Nama Ibu</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Nama_ibu}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="297" height="25">Asal Sekolah</td>
+                                            <td width="99">:</td>
+                                            <td width="207">{{$student->Asal_Sekolah}}</td>
+                                        </tr>
+
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+                                        <tr><td colspan="3">&nbsp;</td></tr>
+
+                                        <tr>
+                                            <td valign="top" height="102" colspan="3">
+
+                                                <table width="91%" height="165" align="center">
+                                                    <tr>
+                                                        <td width="157" align="left" valign="top">Siswa</td>
+                                                        <td width="174">&nbsp;</td>
+                                                        <td width="174">&nbsp;</td>
+                                                        <td width="279" align="center" valign="top">Disetujui</td>
+                                                        <td width="142" align="center" valign="top">Diketahui</td>
+                                                    </tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr>
+                                                        <td height="65" align="left" valign="bottom"><u>{{$student->Nama}}</u></td>
+                                                        <td align="center" valign="bottom">&nbsp;</td>
+                                                        <td width="174">&nbsp;</td>
+                                                        <td width="279" align="center" valign="bottom"><u>Kepala Sekolah</u></td>
+                                                        <td width="142" align="center" valign="bottom"><u>Wakasek Bid. Kesiswaan</u></td>
+                                                    </tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
                 </div>
                 <!-- /.table-responsive -->
             </div>
