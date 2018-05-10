@@ -76,4 +76,5 @@ Route::group(['middleware' => ['web']],function(){
             Route::resource('/payments','PaymentController');
         });
     });
+    //end of post put delete method
 });
