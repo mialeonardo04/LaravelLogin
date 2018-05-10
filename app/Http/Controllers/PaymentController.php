@@ -13,7 +13,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments=Payment::paginate(3);
+        return view('payment.home',['payments'=>$payments]);
     }
 
     /**
@@ -23,7 +24,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('payment.create');
     }
 
     /**
@@ -34,7 +35,36 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nis' => 'required|max:12',
+            'tahun' => 'required|integer',
+            'tgl_byr' => 'date_format:"Y-m-d"|required|max:32',
+            'spp' => 'integer|required',
+            'kegiatan' => 'integer|required',
+            'buku' => 'required|integer',
+            'katering' => 'required|integer',
+            'komite' => 'required|integer',
+            'seragam' => 'integer|required',
+            'lainnya' => 'required|integer',
+        ]);
+        $payment = new Payment;
+        $paymentcek = Payment::where('NIS','=',$request->nis)->exists();
+        if ($paymentcek) {
+            return redirect('/payments/create/')->with('message','NIS Pembayar harus unik');
+        } else {
+            $payment->NIS = $request->nis;
+            $payment->Tahun = $request->tahun;
+            $payment->Tanggal_bayar = $request->tgl_byr;
+            $payment->SPP = $request->spp;
+            $payment->Uang_kegiatan = $request->kegiatan;
+            $payment->Uang_buku = $request->buku;
+            $payment->Katering = $request->katering;
+            $payment->Komite = $request->komite;
+            $payment->Seragam = $request->seragam;
+            $payment->Others = $request->lainnya;
+            $payment->save();
+            return redirect('/payments')->with('message','Data Pembayaran Berhasil ditambah');
+        }
     }
 
     /**
@@ -45,7 +75,11 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $payment = Payment::where('NIS',$id)->first();
+        if (!$payment) {
+            abort(404);
+        }
+        return view('payment.read')->with('payment',$payment);
     }
 
     /**
@@ -56,7 +90,11 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment = Payment::where('NIS',$id)->first();
+        if (!$payment) {
+            abort(404);
+        }
+        return view('payment.edit')->with('payment',$payment);
     }
 
     /**
@@ -68,7 +106,35 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nis' => 'required|max:12',
+            'tahun' => 'required|integer',
+            'tgl_byr' => 'date_format:"Y-m-d"|required|max:32',
+            'spp' => 'integer|required',
+            'kegiatan' => 'integer|required',
+            'buku' => 'required|integer',
+            'katering' => 'required|integer',
+            'komite' => 'required|integer',
+            'seragam' => 'integer|required',
+            'lainnya' => 'required|integer',
+        ]);
+        $payment = Payment::where('NIS',$id)->first();
+        try {
+            $payment->NIS = $request->nis;
+            $payment->Tahun = $request->tahun;
+            $payment->Tanggal_bayar = $request->tgl_byr;
+            $payment->SPP = $request->spp;
+            $payment->Uang_kegiatan = $request->kegiatan;
+            $payment->Uang_buku = $request->buku;
+            $payment->Katering = $request->katering;
+            $payment->Komite = $request->komite;
+            $payment->Seragam = $request->seragam;
+            $payment->Others = $request->lainnya;
+            $payment->save();
+            return redirect('/payments')->with('message','Data Pembayaran Berhasil diedit');
+        } catch (\Exception $e){
+            return redirect('/payments')->with('message','Error: '.$e->getMessage().'==> NIS pembayar tidak unik');
+        }
     }
 
     /**
@@ -79,6 +145,8 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect('/payments')->with('message','Data Pembayaran Berhasil dihapus');
     }
 }
