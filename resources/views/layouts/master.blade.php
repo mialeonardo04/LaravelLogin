@@ -63,7 +63,7 @@
                                     <a href="/students">Data Siswa</a>
                                 </li>
                                 <li>
-                                    <a href="#">Data Guru</a>
+                                    <a href="/teachers">Data Guru</a>
                                 </li>
                                 <li>
                                     <a href="#">Data Pembayaran</a>
