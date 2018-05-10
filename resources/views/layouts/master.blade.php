@@ -66,7 +66,7 @@
                                     <a href="/teachers">Data Guru</a>
                                 </li>
                                 <li>
-                                    <a href="#">Data Pembayaran</a>
+                                    <a href="/payments">Data Pembayaran</a>
                                 </li>
                             </ul>
                         </li>
