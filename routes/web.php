@@ -50,24 +50,6 @@ Route::group(['middleware' => ['web']],function(){
         'middleware' => ['auth','roles'],
         'roles' => ['admin']
     ]);
-
-
-    Route::post('/admin/assign-roles', [
-        'uses' => 'UserController@postAdminAssignRoles',
-        'as' => 'admin.assign',
-        'middleware' => ['auth','roles'],
-        'roles' => ['admin']
-    ]);
-
-
-    Route::group(['middleware' =>['auth']],function (){
-        Route::resource('/students','StudentController');
-    });
-
-    Route::group(['middleware' => ['auth','roles'],'roles' => ['admin']], function (){
-        Route::resource('/teachers','TeacherController');
-        Route::resource('/payments','PaymentController');
-    });
     Route::get('/printallstudent',[
         'uses' => 'StudentController@cetakStudent',
         'as' => 'printallstudent',
@@ -78,4 +60,20 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'students.printbyid',
         'middleware' => 'auth'
     ]);
+    //end of GET method
+
+    Route::post('/admin/assign-roles', [
+        'uses' => 'UserController@postAdminAssignRoles',
+        'as' => 'admin.assign',
+        'middleware' => ['auth','roles'],
+        'roles' => ['admin']
+    ]);
+
+    Route::group(['middleware' => ['auth']],function (){
+        Route::resource('/students','StudentController');
+        Route::group(['middleware' => ['roles'],'roles' => ['admin']],function (){
+            Route::resource('/teachers','TeacherController');
+            Route::resource('/payments','PaymentController');
+        });
+    });
 });
