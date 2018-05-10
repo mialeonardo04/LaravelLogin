@@ -12,7 +12,8 @@
 */
 
 Route::group(['middleware' => ['web']],function(){
-	Route::get('/', function () {
+	//tanpa login
+    Route::get('/', function () {
 	    return view('welcome');
 	})->name('home');
 	Route::get('/login',[
@@ -23,6 +24,21 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'UserController@getRegister',
         'as' => 'register'
     ]);
+    Route::post('/register',[
+        'uses' => 'UserController@postSignUp',
+        'as' => 'register'
+    ]);
+    Route::post('/login',[
+        'uses' => 'UserController@postSignIn',
+        'as' => 'login'
+    ]);
+    Route::get('/logout',[
+        'uses' => 'UserController@logout',
+        'as' => 'logout'
+    ]);
+
+    //harus login
+
 	Route::get('/dashboard',[
 		'uses' => 'UserController@getDashboard',
 		'as' => 'dashboard',
@@ -34,28 +50,24 @@ Route::group(['middleware' => ['web']],function(){
         'middleware' => ['auth','roles'],
         'roles' => ['admin']
     ]);
-	Route::get('/logout',[
-	    'uses' => 'UserController@logout',
-        'as' => 'logout'
-    ]);
-	///////////get///////////////////////
-	Route::post('/register',[
-		'uses' => 'UserController@postSignUp',
-		'as' => 'register'
-	]);
-	Route::post('/login',[
-		'uses' => 'UserController@postSignIn',
-		'as' => 'login'
-	]);
+
+
     Route::post('/admin/assign-roles', [
         'uses' => 'UserController@postAdminAssignRoles',
         'as' => 'admin.assign',
         'middleware' => ['auth','roles'],
         'roles' => ['admin']
     ]);
-	//////////post/////////////////////
 
-    Route::resource('/students','StudentController');
+
+    Route::group(['middleware' =>['auth']],function (){
+        Route::resource('/students','StudentController');
+    });
+
+    Route::group(['middleware' => ['auth','roles'],'roles' => ['admin']], function (){
+        Route::resource('/teachers','TeacherController');
+        Route::resource('/payments','PaymentController');
+    });
     Route::get('/printallstudent',[
         'uses' => 'StudentController@cetakStudent',
         'as' => 'printallstudent',
