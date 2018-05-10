@@ -18,7 +18,7 @@
         <a href="/teachers/create/">
           <button type="button" class="btn btn-primary btn-xs">Create New</button>
         </a> | 
-          <a href="/">
+          <a href="/dashboard">
             <button type="button" class="btn btn-danger btn-xs">Back to Home</button>
           </a>
       </div>
