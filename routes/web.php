@@ -72,8 +72,16 @@ Route::group(['middleware' => ['web']],function(){
     Route::group(['middleware' => ['auth']],function (){
         Route::resource('/students','StudentController');
         Route::group(['middleware' => ['roles'],'roles' => ['admin']],function (){
+            Route::get('/teachers/printbyid/{id}',[
+                'uses' => 'TeacherController@cetakById',
+                'as' => 'teachers.printbyid'
+            ]);
             Route::resource('/teachers','TeacherController');
             Route::resource('/payments','PaymentController');
+            Route::get('/printallteacher',[
+                'uses' => 'TeacherController@cetakTeacher',
+                'as' => 'printallteacher'
+            ]);
         });
     });
     //end of post put delete method
