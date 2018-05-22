@@ -37,7 +37,7 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'logout'
     ]);
 /////////////////////////////////////////Route yang harus login///////////////////////////
-/// 
+///
 
     Route::group(['middleware' => ['auth']],function (){
         Route::get('/dashboard',[
@@ -71,6 +71,10 @@ Route::group(['middleware' => ['web']],function(){
             Route::get('/printallteacher',[
                 'uses' => 'TeacherController@cetakTeacher',
                 'as' => 'printallteacher'
+            ]);
+            Route::get('/teachers/printbyid/{id}',[
+                'uses' => 'TeacherController@cetakById',
+                'as' => 'teachers.printbyid'
             ]);
         });
     });
