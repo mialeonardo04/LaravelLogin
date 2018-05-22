@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => ['web']],function(){
-	//tanpa login
+	///////////Route tanpa login//////////////////////
     Route::get('/', function () {
 	    return view('welcome');
 	})->name('home');
@@ -36,42 +36,32 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'UserController@logout',
         'as' => 'logout'
     ]);
-
-    //harus login
-
-	Route::get('/dashboard',[
-		'uses' => 'UserController@getDashboard',
-		'as' => 'dashboard',
-        'middleware' => 'auth'
-	]);
-    Route::get('/admin', [
-        'uses' => 'UserController@getAdminPage',
-        'as' => 'admin',
-        'middleware' => ['auth','roles'],
-        'roles' => ['admin']
-    ]);
-    Route::get('/printallstudent',[
-        'uses' => 'StudentController@cetakStudent',
-        'as' => 'printallstudent',
-        'middleware' => 'auth'
-    ]);
-    Route::get('/students/printbyid/{id}',[
-        'uses' => 'StudentController@cetakById',
-        'as' => 'students.printbyid',
-        'middleware' => 'auth'
-    ]);
-    //end of GET method
-
-    Route::post('/admin/assign-roles', [
-        'uses' => 'UserController@postAdminAssignRoles',
-        'as' => 'admin.assign',
-        'middleware' => ['auth','roles'],
-        'roles' => ['admin']
-    ]);
+/////////////////////////////////////////Route yang harus login///////////////////////////
+/// 
 
     Route::group(['middleware' => ['auth']],function (){
+        Route::get('/dashboard',[
+            'uses' => 'UserController@getDashboard',
+            'as' => 'dashboard'
+        ]);
         Route::resource('/students','StudentController');
+        Route::get('/printallstudent',[
+            'uses' => 'StudentController@cetakStudent',
+            'as' => 'printallstudent'
+        ]);
+        Route::get('/students/printbyid/{id}',[
+            'uses' => 'StudentController@cetakById',
+            'as' => 'students.printbyid'
+        ]);
         Route::group(['middleware' => ['roles'],'roles' => ['admin']],function (){
+            Route::post('/admin/assign-roles', [
+                'uses' => 'UserController@postAdminAssignRoles',
+                'as' => 'admin.assign'
+            ]);
+            Route::get('/admin', [
+                'uses' => 'UserController@getAdminPage',
+                'as' => 'admin'
+            ]);
             Route::get('/teachers/printbyid/{id}',[
                 'uses' => 'TeacherController@cetakById',
                 'as' => 'teachers.printbyid'
