@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Http\Request;
 use Exception;
 use App\Post;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -20,7 +21,14 @@ class TeacherController extends Controller
         $teachers=Teacher::paginate(3);
         return view('teacher.home',['teachers'=>$teachers]);
     }
-
+    public function exportAll(Request $request, $type){
+        $data = Teacher::all();
+        return Excel::create('teacher', function ($excel) use ($data){
+            $excel->sheet('teacher',function ($sheet) use ($data){
+               $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
     public function cetakTeacher(){
         $teacher = Teacher::all();
         return view('teacher.print',['teachers' => $teacher]);
