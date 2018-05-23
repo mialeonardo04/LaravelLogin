@@ -9,4 +9,5 @@ class Teacher extends Model
     public $timestamps = false;
     protected $primaryKey = 'NIP';
     public $incrementing = false;
+
 }
