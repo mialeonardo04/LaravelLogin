@@ -54,6 +54,10 @@ Route::group(['middleware' => ['web']],function(){
             'as' => 'students.printbyid'
         ]);
         Route::group(['middleware' => ['roles'],'roles' => ['admin']],function (){
+            Route::get('/teachers/downloadExcel/{type}', [
+                'uses' => 'TeacherController@exportAll',
+                'as' => 'teachers.downloadExcel'
+            ]);
             Route::post('/admin/assign-roles', [
                 'uses' => 'UserController@postAdminAssignRoles',
                 'as' => 'admin.assign'
