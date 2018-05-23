@@ -20,7 +20,14 @@
         </a> | 
           <a href="/dashboard">
             <button type="button" class="btn btn-danger btn-xs">Back to Home</button>
+          </a> |
+          <a href="{{ URL::to('/teachers/downloadExcel/xlsx') }}">
+              <button type="button" class="btn btn-link btn-xs">download .xlsx</button>
+          </a> |
+          <a href="{{ URL::to('/teachers/downloadExcel/xls') }}">
+              <button type="button" class="btn btn-link btn-xs">download .xls</button>
           </a>
+
       </div>
 
       <!-- /.panel-heading -->
