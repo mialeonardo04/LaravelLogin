@@ -34,14 +34,6 @@ class TeacherController extends Controller
         return view('teacher.print',['teachers' => $teacher]);
     }
 
-    public function cetakById($id){
-        $teacher = Teacher::where('slug',$id)->first();
-        if (!$teacher) {
-            abort(404);
-        }
-        return view('teacher.printbyid')->with('teacher',$teacher);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
