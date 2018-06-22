@@ -23,8 +23,8 @@
                         <tr>
                             <th>Nama Akun</th>
                             <th>Email</th>
-                            <th>Super User</th>
-                            <th>Normal User</th>
+                            <th>Admin (Guru) </th>
+                            <th>Normal User (Siswa) </th>
                         </tr>
                         </thead>
                         <tbody>
