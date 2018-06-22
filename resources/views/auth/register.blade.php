@@ -30,8 +30,8 @@
             </div>
             <div class="form-group">
                 <select class="form-control" id="sel1" name="role" placeholder="role (1 for admin, 2 for user)">
-                    <option value="1">admin</option>
-                    <option value="2">user</option>
+                    <option value="1">Administrator (Guru dan Administrasi)</option>
+                    <option value="2">Operator (Ketua kelas / Siswa)</option>
                 </select>
             </div>
 
