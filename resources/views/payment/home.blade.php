@@ -31,6 +31,7 @@
 
                     <tr>
                         <th>NIS</th>
+                        <th>Tahun Angkatan (Kelas)</th>
                         <th>Tanggal pembayaran</th>
                         <th>SPP</th>
                         <th>Uang Kegiatan</th>
@@ -42,6 +43,7 @@
                   @foreach($payments as $p)
                     <tr>
                         <td>{{$p->NIS}}</td>
+                        <td>{{$p->Tahun}}</td>
                         <td>{{$p->Tanggal_bayar}}</td>
                         <td>@money($p->SPP)</td>
                         <td>@money($p->Uang_kegiatan)</td>
