@@ -26,17 +26,21 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
           <div class="table-responsive">
-              <table class="table table-hover">
+              <table id="example2" class="table table-bordered table-hover">
                   <thead>
 
                     <tr>
                         <th>NIS</th>
-                        <th>Tahun Angkatan (Kelas)</th>
-                        <th>Tanggal pembayaran</th>
+                        <th>Tahun(Kelas)</th>
+                        <th>TanggalBayar</th>
                         <th>SPP</th>
-                        <th>Uang Kegiatan</th>
+                        <th>Kegiatan</th>
                         <th>Uang Buku</th>
-                        <th>Action</th>
+                        <th>Katering</th>
+                        <th>Komite</th>
+                        <th>Seragam</th>
+                        <th>Lain-lain</th>
+                        <th colspan="3" style="text-align:center;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,15 +49,20 @@
                         <td>{{$p->NIS}}</td>
                         <td>{{$p->Tahun}}</td>
                         <td>{{$p->Tanggal_bayar}}</td>
-                        <td>@money($p->SPP)</td>
-                        <td>@money($p->Uang_kegiatan)</td>
-                        <td>@money($p->Uang_buku)</td>
+                        <td>Rp.{{number_format($p->SPP,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Uang_kegiatan,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Uang_buku,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Katering,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Komite,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Seragam,2,',','.')}}</td>
+                        <td>Rp.{{number_format($p->Others,2,',','.')}}</td>
 
-                        <td><a href="/payments/{{$p->NIS}}"><i class="fa fa-eye"></i></a> | <a href="/payments/{{$p->NIS}}/edit"><i class="fa fa-pencil-square-o"></i></a> |
-                        <form style="display: inline;" action="/payments/{{$p->NIS}}" method="post">
+                        <td><form><a href="/payments/{{$p->NIS}}"><i class="fa fa-eye"></i>Preview</a></form></td>
+                        <td><form><a href="/payments/{{$p->NIS}}/edit"><i class="fa fa-pencil-square-o"></i>Edit</a></form></td>
+                        <td><form action="/payments/{{$p->NIS}}" method="post">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <input type="hidden" name="_method" value="delete">
-                          <button type="submit" class="btn-link" onclick="return confirm('Delete item! Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                          <button type="submit" class="btn-link" onclick="return confirm('Delete item! Are you sure?')"><i class="fa fa-trash-o"></i>Delete</button>
                         </form>
                         </td>
                     </tr>
