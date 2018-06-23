@@ -66,7 +66,7 @@
                                     <a href="/teachers">Data Guru</a>
                                 </li>
                                 <li>
-                                    <a href="/payments">Data Pembayaran</a>
+                                    <a href="/payments">Daftar Tarif Pembayaran</a>
                                 </li>
                             </ul>
                         </li>
