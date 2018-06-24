@@ -184,16 +184,22 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         $pay = Payment::where('NIS',$id)->first();
-        if ($pay->Others > 0 && $pay->SPP > 0 && $pay->Uang_kegiatan > 0 && $pay->Uang_buku > 0 &&
-            $pay->Katering > 0 && $pay->Komite > 0 && $pay->Seragam > 0){
-            echo "blm bisa bayar";
-            //return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');
-        } else {
-            echo "bisa bayar";
-//            $payment = Payment::find($id);
-//            $payment->delete();
-//            return redirect('/payments')->with('message','Data Pembayaran Berhasil dihapus');
-        }
-
+        if ($pay->SPP <= 0){
+            if ($pay->Uang_kegiatan <= 0){
+               if ($pay->Uang_buku <= 0){
+                   if($pay->Katering <= 0){
+                       if ($pay->Komite <= 0){
+                           if ($pay->Seragam <= 0){
+                               if ($pay->Others <= 0){
+                                   $payment = Payment::find($id);
+                                   $payment->delete();
+                                   return redirect('/payments')->with('message','Data Pembayaran Berhasil dihapus');
+                               } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+                           } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+                       } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+                   } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+               } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+            } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
+        } else {return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');}
     }
 }
