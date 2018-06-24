@@ -68,6 +68,9 @@
                                 <li>
                                     <a href="/payments">Daftar Tarif Pembayaran</a>
                                 </li>
+                                <li>
+                                    <a href="#">Data Pembayaran</a>
+                                </li>
                             </ul>
                         </li>
                         
