@@ -74,6 +74,7 @@ Route::group(['middleware' => ['web']],function(){
             ]);
             Route::resource('/teachers','TeacherController');
             Route::resource('/payments','PaymentController');
+            Route::get('search','PaymentController@search');
             Route::get('/printallteacher',[
                 'uses' => 'TeacherController@cetakTeacher',
                 'as' => 'printallteacher'
