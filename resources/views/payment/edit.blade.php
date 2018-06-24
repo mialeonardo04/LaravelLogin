@@ -40,7 +40,7 @@
               </div>
               <div class="form-group date" data-provide="datepicker-inline">
                   <label>Pay date</label>
-                  <input type="text" class="form-control" placeholder="Tanggal Pembayaran" name="tgl_byr">
+                  <input type="date" class="form-control" placeholder="Tanggal Pembayaran" name="tgl_byr">
                   {{ ($errors->has('tgl_byr')) ? $errors->first('tgl_byr') : '' }}
               </div>
               <div class="form-group">
