@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pembayaran;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Record_BayarController extends Controller
 {
@@ -16,6 +17,15 @@ class Record_BayarController extends Controller
     {
         $payments=Pembayaran::all();
         return view('bayar.recordpembayaran')->with('payments',$payments);
+    }
+
+    public function exportAll(Request $request, $type){
+        $data = Pembayaran::all();
+        return Excel::create('record_pembayaran', function ($excel) use ($data){
+            $excel->sheet('record_pembayaran',function ($sheet) use ($data){
+                $sheet->fromArray($data);
+            });
+        })->download($type);
     }
 
     /**
