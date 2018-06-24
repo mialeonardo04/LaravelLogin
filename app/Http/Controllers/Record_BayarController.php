@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pembayaran;
 use Maatwebsite\Excel\Facades\Excel;
+use DB;
 
 class Record_BayarController extends Controller
 {
@@ -19,6 +20,17 @@ class Record_BayarController extends Controller
         return view('bayar.recordpembayaran')->with('payments',$payments);
     }
 
+    public function search(Request $request)
+    {
+        $searchData = $request->searchData;
+
+        $data = DB::table('pembayarans')
+            ->where('Tanggal_bayar', 'like', '%' . $searchData . '%')
+            ->get();
+        return view('bayar.recordpembayaran',[
+            'payments' => $data, 'searchByRes' =>$searchData
+        ]);
+    }
     public function exportAll(Request $request, $type){
         $data = Pembayaran::all();
         return Excel::create('record_pembayaran', function ($excel) use ($data){
