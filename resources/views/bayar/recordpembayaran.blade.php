@@ -10,6 +10,12 @@
         <div class="panel-heading">
             <a href="/dashboard">
                 <button type="button" class="btn btn-danger btn-xs">Back to Home</button>
+            </a> |
+            <a href="{{ URL::to('/recordpayments/downloadExcel/xlsx') }}">
+                <button type="button" class="btn btn-link btn-xs">download .xlsx</button>
+            </a> |
+            <a href="{{ URL::to('/recordpayments/downloadExcel/xls') }}">
+                <button type="button" class="btn btn-link btn-xs">download .xls</button>
             </a>
         </div>
 
