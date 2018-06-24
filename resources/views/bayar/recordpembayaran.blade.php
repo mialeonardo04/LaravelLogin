@@ -17,6 +17,14 @@
             <a href="{{ URL::to('/recordpayments/downloadExcel/xls') }}">
                 <button type="button" class="btn btn-link btn-xs">download .xls</button>
             </a>
+            <form action="{{ url('searchByDate') }}" class="form-inline text-right">
+                <div class="form-group">
+                    <input type="date" class="form-control" name="searchData">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
         </div>
 
         <!-- /.panel-heading -->
