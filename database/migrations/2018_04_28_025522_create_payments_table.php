@@ -16,7 +16,6 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->string('NIS',12)->primary();
             $table->string('Tahun',12);
-            $table->date('Tanggal_bayar');
             $table->string('SPP');
             $table->string('Uang_kegiatan');
             $table->string('Uang_buku');

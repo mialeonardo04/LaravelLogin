@@ -14,8 +14,17 @@ class CreatePembayaransTable extends Migration
     public function up()
     {
         Schema::create('pembayarans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('ID_Bayar');
+            $table->string('NIS',12);
+            $table->string('Tahun',12);
+            $table->date('Tanggal_bayar');
+            $table->string('SPP_byr');
+            $table->string('Uang_kegiatan_byr');
+            $table->string('Uang_buku_byr');
+            $table->string('Katering_byr');
+            $table->string('Komite_byr');
+            $table->string('Seragam_byr');
+            $table->string('Others_byr');
         });
     }
 
