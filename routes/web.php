@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Payment;
+use Illuminate\Support\Facades\Input;
 
 Route::group(['middleware' => ['web']],function(){
 	///////////Route tanpa login//////////////////////
