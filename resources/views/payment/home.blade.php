@@ -10,7 +10,7 @@
 @elseif(Session::has('messageEdit'))
     <div class="alert {{ Session::get('alert alert-danger', 'alert-danger') }}">{{ Session::get('messageEdit') }}</div>
 @endif
-<h2 class="page-header">Data Pembayaran</h2>
+<h2 class="page-header">Daftar Tagihan</h2>
       <div class="panel panel-default">
         <div class="panel-heading">
           <a href="/payments/create/">
@@ -21,7 +21,7 @@
           </a>
             <form action="{{ url('search') }}" class="form-inline text-right">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="searchData" placeholder="Cari Tagihan">
+                    <input type="text" class="form-control" name="searchData" placeholder="Masukkan NIS atau Tahun">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
@@ -38,13 +38,13 @@
                     <tr>
                         <th>NIS</th>
                         <th>Tahun(Kelas)</th>
-                        <th>SPP</th>
-                        <th>Kegiatan</th>
-                        <th>Uang Buku</th>
-                        <th>Katering</th>
-                        <th>Komite</th>
-                        <th>Seragam</th>
-                        <th>Lain-lain</th>
+                        <th>Tagihan SPP</th>
+                        <th>Tagihan Kegiatan</th>
+                        <th>Tagihan Buku</th>
+                        <th>Tagihan Katering</th>
+                        <th>Tagihan Komite</th>
+                        <th>Tagihan Seragam</th>
+                        <th>Tagihan Lain-lain</th>
                         <th colspan="3" style="text-align:center;">Action</th>
                     </tr>
                   </thead>
