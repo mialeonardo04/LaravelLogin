@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Payment;
+use DB;
 
 class PaymentController extends Controller
 {
@@ -18,6 +19,18 @@ class PaymentController extends Controller
         return view('payment.home')->with('payments',$payments);
     }
 
+    public function search(Request $request)
+    {
+        $searchData = $request->searchData;
+
+        $data = DB::table('payments')
+            ->where('NIS', 'like', '%' . $searchData . '%')
+            ->orWhere('Tahun', 'like', '%' . $searchData . '%')
+            ->paginate(3);
+        return view('payment.home',[
+            'payments' => $data, 'searchByRes' =>$searchData
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
