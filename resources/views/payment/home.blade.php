@@ -19,9 +19,9 @@
           <a href="/dashboard">
             <button type="button" class="btn btn-danger btn-xs">Back to Home</button>
           </a>
-            <form action="" method="GET" class="form-inline text-right">
+            <form action="{{ url('search') }}" class="form-inline text-right">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="q" placeholder="Cari Tagihan">
+                    <input type="text" class="form-control" name="searchData" placeholder="Cari Tagihan">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
