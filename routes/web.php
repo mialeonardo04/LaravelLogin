@@ -80,6 +80,7 @@ Route::group(['middleware' => ['web']],function(){
                 'as' => 'recordpayments.downloadExcel'
             ]);
             Route::get('search','PaymentController@search');
+            Route::get('searchByDate','Record_BayarController@search');
             Route::get('/printallteacher',[
                 'uses' => 'TeacherController@cetakTeacher',
                 'as' => 'printallteacher'
