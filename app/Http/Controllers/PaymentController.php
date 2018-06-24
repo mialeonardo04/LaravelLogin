@@ -15,7 +15,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments=Payment::paginate(3);
-        return view('payment.home',['payments'=>$payments]);
+        return view('payment.home')->with('payments',$payments);
     }
 
     /**
@@ -39,7 +39,6 @@ class PaymentController extends Controller
         $this->validate($request, [
             'nis' => 'required|max:12',
             'tahun' => 'required|integer',
-            'tgl_byr' => 'date_format:"Y-m-d"|required|max:32',
             'spp' => 'integer|required',
             'kegiatan' => 'integer|required',
             'buku' => 'required|integer',
@@ -55,7 +54,6 @@ class PaymentController extends Controller
         } else {
             $payment->NIS = $request->nis;
             $payment->Tahun = $request->tahun;
-            $payment->Tanggal_bayar = $request->tgl_byr;
             $payment->SPP = $request->spp;
             $payment->Uang_kegiatan = $request->kegiatan;
             $payment->Uang_buku = $request->buku;
@@ -123,7 +121,6 @@ class PaymentController extends Controller
         try {
             $payment->NIS = $request->nis;
             $payment->Tahun = $request->tahun;
-            $payment->Tanggal_bayar = $request->tgl_byr;
             $payment->SPP = $request->spp;
             $payment->Uang_kegiatan = $request->kegiatan;
             $payment->Uang_buku = $request->buku;
@@ -137,6 +134,7 @@ class PaymentController extends Controller
             return redirect('/payments')->with('message','Error: '.$e->getMessage().'==> NIS pembayar tidak unik');
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
