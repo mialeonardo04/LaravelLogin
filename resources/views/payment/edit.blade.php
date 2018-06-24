@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    <script>
+        $(document).ready(function(){
+            var date_input=$('input[name="tgl_byr"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+        })
+    </script>
 <h2 class="page-header">Edit data</h2>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -18,52 +30,52 @@
               <input type="hidden" name="_method" value="put">
               <div class="form-group">
                   <label>NIS</label>
-                  <input class="form-control" placeholder="Nomor Induk Siswa" value="{{$payment->NIS}}" name="nis">
+                  <input type="text" class="form-control" placeholder="Nomor Induk Siswa" value="{{$payment->NIS}}" name="nis">
                   {{ ($errors->has('nis')) ? $errors->first('nis') : '' }}
               </div>
               <div class="form-group">
                   <label>Years</label>
-                  <input class="form-control" placeholder="Tahun" name="tahun" value="{{$payment->Tahun}}">
+                  <input type="text" class="form-control" placeholder="Tahun" name="tahun" value="{{$payment->Tahun}}">
                   {{ ($errors->has('tahun')) ? $errors->first('tahun') : '' }}
               </div>
-              <div class="form-group">
+              <div class="form-group date" data-provide="datepicker-inline">
                   <label>Pay date</label>
-                  <input class="form-control" placeholder="Tanggal Pembayaran" value="{{$payment->Tanggal_bayar}}" name="tgl_byr">
+                  <input type="text" class="form-control" placeholder="Tanggal Pembayaran" name="tgl_byr">
                   {{ ($errors->has('tgl_byr')) ? $errors->first('tgl_byr') : '' }}
               </div>
               <div class="form-group">
                   <label>Main Payment</label>
-                  <input class="form-control" placeholder="SPP" name="spp" value="{{$payment->SPP}}">
+                  <input type="text" class="form-control" placeholder="SPP" name="spp" value="{{$payment->SPP}}">
                   {{ ($errors->has('spp')) ? $errors->first('spp') : '' }}
               </div>
               <div class="form-group">
                   <label>Activity Costs</label>
-                  <input class="form-control" placeholder="Biaya Kegiatan" value="{{$payment->Uang_kegiatan}}" name="kegiatan">
+                  <input type="text" class="form-control" placeholder="Biaya Kegiatan" value="{{$payment->Uang_kegiatan}}" name="kegiatan">
                   {{ ($errors->has('kegiatan')) ? $errors->first('kegiatan') : '' }}
               </div>
               <div class="form-group">
                   <label>Book Payment</label>
-                  <input class="form-control" placeholder="Uang Buku" value="{{$payment->Uang_buku}}" name="buku">
+                  <input type="text" class="form-control" placeholder="Uang Buku" value="{{$payment->Uang_buku}}" name="buku">
                   {{ ($errors->has('buku')) ? $errors->first('buku') : '' }}
               </div>
               <div class="form-group">
                   <label>Catering</label>
-                  <input class="form-control" placeholder="Katering" value="{{$payment->Katering}}" name="katering">
+                  <input type="text" class="form-control" placeholder="Katering" value="{{$payment->Katering}}" name="katering">
                   {{ ($errors->has('katering')) ? $errors->first('katering') : '' }}
               </div>
               <div class="form-group">
                   <label>Comitee</label>
-                  <input class="form-control" placeholder="Komite" value="{{$payment->Komite}}" name="komite">
+                  <input type="text" class="form-control" placeholder="Komite" value="{{$payment->Komite}}" name="komite">
                   {{ ($errors->has('komite')) ? $errors->first('komite') : '' }}
               </div>
               <div class="form-group">
                   <label>Uniform Costs</label>
-                  <input class="form-control" placeholder="Uang Seragam" value="{{$payment->Seragam}}" name="seragam">
+                  <input type="text" class="form-control" placeholder="Uang Seragam" value="{{$payment->Seragam}}" name="seragam">
                   {{ ($errors->has('seragam')) ? $errors->first('seragam') : '' }}
               </div>
               <div class="form-group">
                   <label>Others</label>
-                  <input class="form-control" placeholder="Lain-lain" value="{{$payment->Others}}" name="lainnya">
+                  <input type="text" class="form-control" placeholder="Lain-lain" value="{{$payment->Others}}" name="lainnya">
                   {{ ($errors->has('lainnya')) ? $errors->first('lainnya') : '' }}
               </div>
               <button type="submit" name="name" value="edit" class="btn btn-default">Submit</button>
