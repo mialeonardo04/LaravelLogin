@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Payment;
+use App\Pembayaran;
 use DB;
 
 class PaymentController extends Controller
@@ -121,32 +122,55 @@ class PaymentController extends Controller
         $this->validate($request, [
             'nis' => 'required|max:12',
             'tahun' => 'required|integer',
-            'tgl_byr' => 'required|date_format:"Y-m-d"|max:32',
+            'tgl_byr' => 'required',
             'spp' => 'integer|required',
             'kegiatan' => 'integer|required',
             'buku' => 'required|integer',
             'katering' => 'required|integer',
             'komite' => 'required|integer',
             'seragam' => 'integer|required',
-            'lainnya' => 'required|integer',
+            'lainnya' => 'integer|required',
         ],[
             'tgl_byr.required' => 'Data tidak boleh kosong',
         ]);
         $payment = Payment::where('NIS',$id)->first();
+        $bayar = new Pembayaran();
+
+        $bayarSPP = $payment->SPP - $request->spp;
+        $bayarKeg = $payment->Uang_kegiatan - $request->kegiatan;
+        $bayarBuku = $payment->Uang_buku - $request->buku;
+        $bayarKatering = $payment->Katering - $request->katering;
+        $bayarKomite = $payment->Komite - $request->komite;
+        $bayarSeragam = $payment->Seragam - $request->seragam;
+        $bayarLain = $payment->Others - $request->lainnya;
+
         try {
             $payment->NIS = $request->nis;
             $payment->Tahun = $request->tahun;
-            $payment->SPP = $request->spp;
-            $payment->Uang_kegiatan = $request->kegiatan;
-            $payment->Uang_buku = $request->buku;
-            $payment->Katering = $request->katering;
-            $payment->Komite = $request->komite;
-            $payment->Seragam = $request->seragam;
-            $payment->Others = $request->lainnya;
+            $payment->SPP = $bayarSPP;
+            $payment->Uang_kegiatan = $bayarKeg;
+            $payment->Uang_buku = $bayarBuku;
+            $payment->Katering = $bayarKatering;
+            $payment->Komite = $bayarKomite;
+            $payment->Seragam = $bayarSeragam;
+            $payment->Others = $bayarLain;
             $payment->save();
-            return redirect('/payments')->with('message','Data Pembayaran Berhasil diedit');
+
+            $bayar->NIS = $request->nis;
+            $bayar->Tahun = $request->tahun;
+            $bayar->Tanggal_bayar = $request->tgl_byr;
+            $bayar->SPP_byr = $request->spp;
+            $bayar->Uang_kegiatan_byr = $request->kegiatan;
+            $bayar->Uang_buku_byr = $request->buku;
+            $bayar->Katering_byr = $request->katering;
+            $bayar->Komite_byr = $request->komite;
+            $bayar->Seragam_byr = $request->seragam;
+            $bayar->Others_byr = $request->lainnya;
+            $bayar->save();
+
+            return redirect('/payments')->with('message','Pembayaran Berhasil, Silahkan lihat record pembayaran');
         } catch (\Exception $e){
-            return redirect('/payments')->with('message','Error: '.$e->getMessage().'==> NIS pembayar tidak unik');
+            return redirect('/payments')->with('message','Error: '.$e->getMessage());
         }
     }
 
@@ -159,8 +183,17 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        $payment = Payment::find($id);
-        $payment->delete();
-        return redirect('/payments')->with('message','Data Pembayaran Berhasil dihapus');
+        $pay = Payment::where('NIS',$id)->first();
+        if ($pay->Others > 0 && $pay->SPP > 0 && $pay->Uang_kegiatan > 0 && $pay->Uang_buku > 0 &&
+            $pay->Katering > 0 && $pay->Komite > 0 && $pay->Seragam > 0){
+            echo "blm bisa bayar";
+            //return redirect('/payments')->with('message','Data Pembayaran BELUM bisa dihapus karena ada administrasi yang belum dibayar');
+        } else {
+            echo "bisa bayar";
+//            $payment = Payment::find($id);
+//            $payment->delete();
+//            return redirect('/payments')->with('message','Data Pembayaran Berhasil dihapus');
+        }
+
     }
 }
