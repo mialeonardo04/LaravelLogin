@@ -75,6 +75,10 @@ Route::group(['middleware' => ['web']],function(){
             Route::resource('/teachers','TeacherController');
             Route::resource('/payments','PaymentController');
             Route::resource('/recordpayments','Record_BayarController');
+            Route::get('/recordpayments/downloadExcel/{type}',[
+                'uses' => 'Record_BayarController@exportAll',
+                'as' => 'recordpayments.downloadExcel'
+            ]);
             Route::get('search','PaymentController@search');
             Route::get('/printallteacher',[
                 'uses' => 'TeacherController@cetakTeacher',
