@@ -121,7 +121,7 @@ class PaymentController extends Controller
         $this->validate($request, [
             'nis' => 'required|max:12',
             'tahun' => 'required|integer',
-            'tgl_byr' => 'date_format:"Y-m-d"|required|max:32',
+            'tgl_byr' => 'required|date_format:"Y-m-d"|max:32',
             'spp' => 'integer|required',
             'kegiatan' => 'integer|required',
             'buku' => 'required|integer',
@@ -129,6 +129,8 @@ class PaymentController extends Controller
             'komite' => 'required|integer',
             'seragam' => 'integer|required',
             'lainnya' => 'required|integer',
+        ],[
+            'tgl_byr.required' => 'Data tidak boleh kosong',
         ]);
         $payment = Payment::where('NIS',$id)->first();
         try {
