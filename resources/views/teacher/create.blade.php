@@ -36,7 +36,7 @@
               </div>
               <div class="form-group">
                   <label>Date of birth</label>
-                  <input class="form-control" placeholder="Tanggal Lahir" name="tgl_lahir">
+                  <input type="date" class="form-control" placeholder="Tanggal Lahir" name="tgl_lahir">
                   {{ ($errors->has('tgl_lahir')) ? $errors->first('tgl_lahir') : '' }}
               </div>
               <div class="form-group">
