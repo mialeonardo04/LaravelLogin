@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Student;
 use App\Payment;
 use App\Pembayaran;
 use DB;
@@ -39,7 +40,10 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('payment.create');
+        $studentNis = Student::select('NIS','Nama')->get();
+        return view('payment.create',[
+            'nis' => $studentNis
+        ]);
     }
 
     /**
