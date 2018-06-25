@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use App\Student;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function getDashboard()
     {
-        return view('dashboard');
+        $jmlStudent = Student::count();
+        $jmlUser = User::count();
+        return view('dashboard',[
+            'studentCount' => $jmlStudent,
+            'userCount' => $jmlUser
+        ]);
     }
 
     public  function getLogin(){
