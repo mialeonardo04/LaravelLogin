@@ -21,7 +21,12 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <div class="form-group">
                   <label>NIS</label>
-                  <input class="form-control" placeholder="Nomor Induk Siswa" name="nis">
+                  <select class="form-control" name="nis">
+                      <option value="">Pilih Data Siswa</option>
+                      @foreach($nis as $s)
+                      <option value="{{ $s->NIS }}">{{ $s->NIS }} - {{ $s->Nama }}</option>
+                      @endforeach
+                  </select>
                   {{ ($errors->has('nis')) ? $errors->first('nis') : '' }}
               </div>
               <div class="form-group">
