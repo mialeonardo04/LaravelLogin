@@ -20,9 +20,13 @@
                 <div class="panel-body">
                     <h2>{{$studentCount}} orang</h2>
                 </div>
-                <div class="panel-footer">
-                    <a href="/students">Lihat Selengkapnya</a>
-                </div>
+
+                <a href="/students">
+                    <div class="panel-footer">
+                        Lihat Selengkapnya
+                    </div>
+                </a>
+
             </div>
         </div>
         <div class="col-lg-6">
