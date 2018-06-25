@@ -30,11 +30,6 @@
                   {{ ($errors->has('tahun')) ? $errors->first('tahun') : '' }}
               </div>
               <div class="form-group">
-                  <label>Pay date</label>
-                  <input class="form-control" placeholder="Tanggal Pembayaran" name="tgl_byr">
-                  {{ ($errors->has('tgl_byr')) ? $errors->first('tgl_byr') : '' }}
-              </div>
-              <div class="form-group">
                   <label>Main Payment</label>
                   <input class="form-control" placeholder="SPP" name="spp">
                   {{ ($errors->has('spp')) ? $errors->first('spp') : '' }}
