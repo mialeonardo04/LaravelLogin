@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <script type="text/javascript">
+        if ( $('#test')[0].type != 'date' ) $('#test').datepicker();
+    </script>
     <h2 class="page-header">Record Pembayaran</h2>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -19,7 +22,7 @@
             </a>
             <form action="{{ url('searchByDate') }}" class="form-inline text-right">
                 <div class="form-group">
-                    <input type="date" class="form-control" name="searchData">
+                    <input type="date" id="test" class="form-control" name="searchData">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
@@ -65,6 +68,7 @@
                 </table>
             </div>
             <!-- /.table-responsive -->
+            {!! $payments->links() !!}
         </div>
     </div>
     <!-- /.panel -->
