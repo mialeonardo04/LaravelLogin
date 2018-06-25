@@ -16,7 +16,7 @@ class Record_BayarController extends Controller
      */
     public function index()
     {
-        $payments=Pembayaran::all();
+        $payments=Pembayaran::paginate(10);
         return view('bayar.recordpembayaran')->with('payments',$payments);
     }
 
@@ -26,7 +26,8 @@ class Record_BayarController extends Controller
 
         $data = DB::table('pembayarans')
             ->where('Tanggal_bayar', 'like', '%' . $searchData . '%')
-            ->get();
+            ->orWhere('NIS','like', '%' . $searchData . '%')
+            ->paginate(5);
         return view('bayar.recordpembayaran',[
             'payments' => $data, 'searchByRes' =>$searchData
         ]);
