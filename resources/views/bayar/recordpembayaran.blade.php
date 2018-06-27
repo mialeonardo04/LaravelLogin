@@ -47,6 +47,7 @@
                         <th>Pembayaran Komite</th>
                         <th>Pembayaran Seragam</th>
                         <th>Pembayaran Lain-lain</th>
+                        <th>Print</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,7 @@
                             <td>Rp.{{number_format($p->Komite_byr,2,',','.')}}</td>
                             <td>Rp.{{number_format($p->Seragam_byr,2,',','.')}}</td>
                             <td>Rp.{{number_format($p->Others_byr,2,',','.')}}</td>
+                            <td><a href="/recordpayments/{{$p->ID_Bayar}}/"><span class="glyphicon glyphicon-print"></span></a></td>
                         </tr>
                     @endforeach
                     </tbody>
