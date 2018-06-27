@@ -71,10 +71,19 @@ class Record_BayarController extends Controller
     public function show($id)
     {
         $bayar = Pembayaran::where('ID_Bayar',$id)->first();
+        $a = $bayar->SPP_byr;
+        $b = $bayar->Uang_kegiatan_byr;
+        $c = $bayar->Uang_buku_byr;
+        $d = $bayar->Katering_byr;
+        $e = $bayar->Komite_byr;
+        $f = $bayar->Seragam_byr;
+        $g = $bayar->Others_byr;
+        $total = $a+$b+$c+$d+$e+$f+$g;
         if (!$bayar) {
             abort(404);
         }
-        return view('bayar.printbyid')->with('bayar',$bayar);
+        return view('bayar.printbyid',array('bayar' => $bayar,
+            'totalbayar'=>$total));
     }
 
     /**
