@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    @if(Session::has('message'))
+        <div class="alert {{ Session::get('alert alert-success', 'alert-info') }}">{{ Session::get('message') }}</div>
+    @endif
     <script type="text/javascript">
         if ( $('#test')[0].type != 'date' ) $('#test').datepicker();
     </script>
@@ -47,7 +50,7 @@
                         <th>Pembayaran Komite</th>
                         <th>Pembayaran Seragam</th>
                         <th>Pembayaran Lain-lain</th>
-                        <th>Print</th>
+                        <th colspan="2">Print/Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +67,13 @@
                             <td>Rp.{{number_format($p->Seragam_byr,2,',','.')}}</td>
                             <td>Rp.{{number_format($p->Others_byr,2,',','.')}}</td>
                             <td><a href="/recordpayments/{{$p->ID_Bayar}}/"><span class="glyphicon glyphicon-print"></span></a></td>
+                            <td>
+                                <form action="/recordpayments/{{$p->ID_Bayar}}" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" class="btn-link" onclick="return confirm('Delete item! Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -7,6 +7,8 @@
 @section('content')
 @if(Session::has('message'))
     <div class="alert {{ Session::get('alert alert-success', 'alert-info') }}">{{ Session::get('message') }}</div>
+@elseif(Session::has('kembalian'))
+    <div class="alert {{ Session::get('alert alert-danger', 'alert-danger') }}">{{ Session::get('kembalian') }}</div>
 @elseif(Session::has('messageEdit'))
     <div class="alert {{ Session::get('alert alert-danger', 'alert-danger') }}">{{ Session::get('messageEdit') }}</div>
 @endif

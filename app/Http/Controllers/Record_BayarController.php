@@ -117,6 +117,9 @@ class Record_BayarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = Pembayaran::find($id);
+        $payment->delete();
+
+        return redirect('/recordpayments')->with('message','Data Pembayaran Berhasil dihapus');
     }
 }

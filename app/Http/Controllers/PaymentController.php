@@ -140,14 +140,33 @@ class PaymentController extends Controller
         $payment = Payment::where('NIS',$id)->first();
         $bayar = new Pembayaran();
 
-        $bayarSPP = $payment->SPP - $request->spp;
-        $bayarKeg = $payment->Uang_kegiatan - $request->kegiatan;
-        $bayarBuku = $payment->Uang_buku - $request->buku;
-        $bayarKatering = $payment->Katering - $request->katering;
-        $bayarKomite = $payment->Komite - $request->komite;
-        $bayarSeragam = $payment->Seragam - $request->seragam;
-        $bayarLain = $payment->Others - $request->lainnya;
+        if ($payment->SPP > 0) {
+            $bayarSPP = $payment->SPP - $request->spp;
+        } else {$bayarSPP = $payment->SPP;}
 
+        if ($payment->Uang_kegiatan > 0) {
+            $bayarKeg = $payment->Uang_kegiatan - $request->kegiatan;
+        } else {$bayarKeg = $payment->Uang_kegiatan;}
+
+        if ($payment->Uang_buku > 0) {
+            $bayarBuku = $payment->Uang_buku - $request->buku;
+        } else {$bayarBuku = $payment->Uang_buku;}
+
+        if ($payment->Katering > 0) {
+            $bayarKatering = $payment->Katering - $request->katering;
+        } else {$bayarKatering = $payment->Katering;}
+
+        if ($payment->Komite > 0) {
+            $bayarKomite = $payment->Komite - $request->komite;
+        } else {$bayarKomite = $payment->Komite;}
+
+        if ($payment->Seragam > 0) {
+            $bayarSeragam = $payment->Seragam - $request->seragam;
+        } else {$bayarSeragam = $payment->Seragam;
+        }
+        if ($payment->Others) {
+            $bayarLain = $payment->Others - $request->lainnya;
+        } else {$bayarLain = $payment->Others;}
         try {
             $payment->NIS = $request->nis;
             $payment->Tahun = $request->tahun;
