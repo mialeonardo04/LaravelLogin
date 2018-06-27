@@ -73,37 +73,37 @@
                             <tr>
                                 <td width="297" height="25">SPP</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->SPP_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->SPP_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Uang Kegiatan</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Uang_kegiatan_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Uang_kegiatan_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Uang Buku</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Uang_buku_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Uang_buku_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Katering</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Katering_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Katering_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Komite</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Komite_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Komite_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Seragam</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Seragam_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Seragam_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td width="297" height="25">Dana Lain</td>
                                 <td width="99">:</td>
-                                <td width="207">{{ $bayar->Others_byr }}</td>
+                                <td width="207">Rp.{{number_format($bayar->Others_byr,2,',','.')}}</td>
                             </tr>
                             <tr>
                                 <td colspan="3">____________________________________________________________________________</td>
@@ -113,7 +113,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2"><b>Total</b></td>
-                                <td><b>{{ $totalbayar }}</b></td>
+                                <td><b>Rp.{{number_format($totalbayar,2,',','.')}}</b></td>
                             </tr>
 
                             <tr><td colspan="3">&nbsp;</td></tr>
@@ -209,37 +209,37 @@
                                     <tr>
                                         <td width="297" height="25">SPP</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->SPP_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->SPP_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Uang Kegiatan</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Uang_kegiatan_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Uang_kegiatan_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Uang Buku</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Uang_buku_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Uang_buku_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Katering</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Katering_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Katering_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Komite</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Komite_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Komite_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Seragam</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Seragam_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Seragam_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td width="297" height="25">Dana Lain</td>
                                         <td width="99">:</td>
-                                        <td width="207">{{ $bayar->Others_byr }}</td>
+                                        <td width="207">Rp.{{number_format($bayar->Others_byr,2,',','.')}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">____________________________________________________________________________</td>
@@ -249,7 +249,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2"><b>Total</b></td>
-                                        <td><b>{{ $totalbayar }}</b></td>
+                                        <td><b>Rp.{{number_format($totalbayar,2,',','.')}}</b></td>
                                     </tr>
 
                                     <tr><td colspan="3">&nbsp;</td></tr>
