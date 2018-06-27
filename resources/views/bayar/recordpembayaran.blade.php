@@ -50,7 +50,7 @@
                         <th>Pembayaran Komite</th>
                         <th>Pembayaran Seragam</th>
                         <th>Pembayaran Lain-lain</th>
-                        <th colspan="2">Print | Delete</th>
+                        <th colspan="2">Print|Delete</th>
                     </tr>
                     </thead>
                     <tbody>
