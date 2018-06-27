@@ -70,7 +70,11 @@ class Record_BayarController extends Controller
      */
     public function show($id)
     {
-        //
+        $bayar = Pembayaran::where('ID_Bayar',$id)->first();
+        if (!$bayar) {
+            abort(404);
+        }
+        return view('bayar.printbyid')->with('bayar',$bayar);
     }
 
     /**
