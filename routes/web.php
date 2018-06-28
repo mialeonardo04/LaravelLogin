@@ -79,8 +79,8 @@ Route::group(['middleware' => ['web']],function(){
                 'uses' => 'Record_BayarController@exportAll',
                 'as' => 'recordpayments.downloadExcel'
             ]);
-            Route::get('search','PaymentController@search');
-            Route::get('searchByDate','Record_BayarController@search');
+            Route::post('search','PaymentController@search');
+            Route::post('searchByDate','Record_BayarController@search');
             Route::get('/printallteacher',[
                 'uses' => 'TeacherController@cetakTeacher',
                 'as' => 'printallteacher'
