@@ -29,7 +29,7 @@ class PaymentController extends Controller
             ->where('NIS', 'like', '%' . $searchData . '%')
             ->orWhere('Tahun', 'like', '%' . $searchData . '%')
             ->paginate(3);
-        return view('payment.home',[
+        return view('payment.hasilsearch_home',[
             'payments' => $data, 'searchByRes' =>$searchData
         ]);
     }
