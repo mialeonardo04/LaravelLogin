@@ -96,7 +96,17 @@ class PaymentController extends Controller
         if (!$payment) {
             abort(404);
         }
-        return view('payment.read')->with('payment',$payment);
+        $a = $payment->SPP;
+        $b = $payment->Uang_kegiatan;
+        $c = $payment->Uang_buku;
+        $d = $payment->Katering;
+        $e = $payment->Komite;
+        $f = $payment->Seragam;
+        $g = $payment->Others;
+
+        $totalbayar = $a + $b + $c + $d + $e + $f + $g;
+        return view('payment.read',
+            array('totalpiutang'=>$totalbayar,'payment'=>$payment));
     }
 
     /**

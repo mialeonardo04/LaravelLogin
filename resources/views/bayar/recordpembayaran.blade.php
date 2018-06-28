@@ -23,9 +23,26 @@
             <a href="{{ URL::to('/recordpayments/downloadExcel/xls') }}">
                 <button type="button" class="btn btn-link btn-xs">download .xls</button>
             </a>
-            <form action="{{ url('searchByDate') }}" class="form-inline text-right">
+            <form action="{{ url('searchByDate') }}" class="form-inline text-right" method="post">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="date" id="test" class="form-control" name="searchData">
+                    {{--<input type="text" id="test" class="form-control" name="searchData2">--}}
+                    <input type="text" id="test" class="form-control" name="searchData2" placeholder=" masukkan nis">
+                    <select name="searchData" class="form-control">
+                        <option value="">Bulan</option>
+                        <option value="01">Januari</option>
+                        <option value="02">Februari</option>
+                        <option value="03">Maret</option>
+                        <option value="04">April</option>
+                        <option value="05">Mei</option>
+                        <option value="06">Juni</option>
+                        <option value="07">Juli</option>
+                        <option value="08">Agustus</option>
+                        <option value="09">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
@@ -36,6 +53,13 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div class="table-responsive">
+                @php($mSPP = 0)
+                @php($mKegiatan = 0)
+                @php($mBuku = 0)
+                @php($mKatering = 0)
+                @php($mKomite = 0)
+                @php($mSeragam = 0)
+                @php($mLainnya = 0)
                 <table id="example2" class="table table-hover">
                     <thead>
 
@@ -55,6 +79,13 @@
                     </thead>
                     <tbody>
                     @foreach($payments as $p)
+                        @php($mSPP += $p->SPP_byr)
+                        @php($mKegiatan += $p->Uang_kegiatan_byr)
+                        @php($mBuku += $p->Uang_buku_byr)
+                        @php($mKatering += $p->Katering_byr)
+                        @php($mKomite += $p->Komite_byr)
+                        @php($mSeragam += $p->Seragam_byr)
+                        @php($mLainnya += $p->Others_byr)
                         <tr>
                             <td>{{$p->Tanggal_bayar}}</td>
                             <td>{{$p->NIS}}</td>
@@ -76,6 +107,16 @@
                             </td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="3"><b>Total</b></td>
+                        <td><b>Rp.{{ number_format($mSPP,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mKegiatan,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mBuku,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mKatering,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mKomite,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mSeragam,2,',','.') }}</b></td>
+                        <td><b>Rp.{{ number_format($mLainnya,2,',','.') }}</b></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

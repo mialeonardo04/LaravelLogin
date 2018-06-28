@@ -21,7 +21,8 @@
           <a href="/dashboard">
             <button type="button" class="btn btn-danger btn-xs">Back to Home</button>
           </a>
-            <form action="{{ url('search') }}" class="form-inline text-right">
+            <form action="{{ url('search') }}" class="form-inline text-right" method="post">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <input type="text" class="form-control" name="searchData" placeholder="Masukkan NIS atau Tahun">
                 </div>
@@ -36,7 +37,14 @@
           <div class="table-responsive">
               <table id="example2" class="table table-hover">
                   <thead>
-
+                  @php($mTotal = 0)
+                  @php($mSPP = 0)
+                  @php($mKegiatan = 0)
+                  @php($mBuku = 0)
+                  @php($mKatering = 0)
+                  @php($mKomite = 0)
+                  @php($mSeragam = 0)
+                  @php($mLainnya = 0)
                     <tr>
                         <th>NIS</th>
                         <th>Tahun(Kelas)</th>
@@ -47,11 +55,20 @@
                         <th>Tagihan Komite</th>
                         <th>Tagihan Seragam</th>
                         <th>Tagihan Lain-lain</th>
-                        <th colspan="3" style="text-align:center;">Action</th>
+                        {{--<th>Total Tagihan</th>--}}
+                        <th colspan="2" style="text-align:center;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                   @foreach($payments as $p)
+                      @php($mSPP += $p->SPP)
+                      @php($mKegiatan += $p->Uang_kegiatan)
+                      @php($mBuku += $p->Uang_buku)
+                      @php($mKatering += $p->Katering)
+                      @php($mKomite += $p->Komite)
+                      @php($mSeragam += $p->Seragam)
+                      @php($mLainnya += $p->Others)
+
                     <tr>
                         <td>{{$p->NIS}}</td>
                         <td>{{$p->Tahun}}</td>
@@ -63,8 +80,9 @@
                         <td>Rp.{{number_format($p->Seragam,2,',','.')}}</td>
                         <td>Rp.{{number_format($p->Others,2,',','.')}}</td>
 
-                        <td><form><a href="/payments/{{$p->NIS}}"><i class="fa fa-eye"></i></a></form></td>
-                        <td><form><a href="/payments/{{$p->NIS}}/edit"><i class="fa fa-credit-card"></i></a></form></td>
+                        {{--<td><a href="/payments/{{$p->NIS}}"><i class="fa fa-eye"></i></a></td>--}}
+                        {{--<td><b>Rp.{{ number_format($mTotal,2,',','.') }}</b></td>--}}
+                        <td><a href="/payments/{{$p->NIS}}/edit"><i class="fa fa-credit-card"></i></a></td>
                         <td><form action="/payments/{{$p->NIS}}" method="post">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                           <input type="hidden" name="_method" value="delete">
@@ -73,6 +91,16 @@
                         </td>
                     </tr>
                   @endforeach
+                  <tr>
+                      <td colspan="2"><b>Total</b></td>
+                      <td><b>Rp.{{ number_format($mSPP,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mKegiatan,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mBuku,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mKatering,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mKomite,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mSeragam,2,',','.') }}</b></td>
+                      <td><b>Rp.{{ number_format($mLainnya,2,',','.') }}</b></td>
+                  </tr>
                 </tbody>
               </table>
             </div>

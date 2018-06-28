@@ -27,37 +27,42 @@
               </div>
               <div class="form-group">
                   <label>Main Payment</label>
-                  <input class="form-control" placeholder="SPP" name="spp" value="@money($payment->SPP)" disabled>
+                  <input class="form-control" placeholder="SPP" name="spp" value="{{ $payment->SPP }}" disabled>
                   {{ ($errors->has('spp')) ? $errors->first('spp') : '' }}
               </div>
               <div class="form-group">
                   <label>Activity Costs</label>
-                  <input class="form-control" placeholder="Biaya Kegiatan" value="@money($payment->Uang_kegiatan)" name="kegiatan" disabled>
+                  <input class="form-control" placeholder="Biaya Kegiatan" value="{{ $payment->Uang_kegiatan }}" name="kegiatan" disabled>
                   {{ ($errors->has('kegiatan')) ? $errors->first('kegiatan') : '' }}
               </div>
               <div class="form-group">
                   <label>Book Payment</label>
-                  <input class="form-control" placeholder="Uang Buku" value="@money($payment->Uang_buku)" name="buku" disabled>
+                  <input class="form-control" placeholder="Uang Buku" value="{{ $payment->Uang_buku }}" name="buku" disabled>
                   {{ ($errors->has('buku')) ? $errors->first('buku') : '' }}
               </div>
               <div class="form-group">
                   <label>Catering</label>
-                  <input class="form-control" placeholder="Katering" value="@money($payment->Katering)" name="katering" disabled>
+                  <input class="form-control" placeholder="Katering" value="{{ $payment->Katering }}" name="katering" disabled>
                   {{ ($errors->has('katering')) ? $errors->first('katering') : '' }}
               </div>
               <div class="form-group">
                   <label>Comitee</label>
-                  <input class="form-control" placeholder="Komite" value="@money($payment->Komite)" name="komite" disabled>
+                  <input class="form-control" placeholder="Komite" value="{{ $payment->Komite }}" name="komite" disabled>
                   {{ ($errors->has('komite')) ? $errors->first('komite') : '' }}
               </div>
               <div class="form-group">
                   <label>Uniform Costs</label>
-                  <input class="form-control" placeholder="Uang Seragam" value="@money($payment->Seragam)" name="seragam" disabled>
+                  <input class="form-control" placeholder="Uang Seragam" value="{{ $payment->Seragam }}" name="seragam" disabled>
                   {{ ($errors->has('seragam')) ? $errors->first('seragam') : '' }}
               </div>
               <div class="form-group">
                   <label>Others</label>
-                  <input class="form-control" placeholder="Lain-lain" value="@money($payment->Others)" name="lainnya" disabled>
+                  <input class="form-control" placeholder="Lain-lain" value="{{ $payment->Others }}" name="lainnya" disabled>
+                  {{ ($errors->has('lainnya')) ? $errors->first('lainnya') : '' }}
+              </div>
+              <div class="form-group">
+                  <label><b>Total Piutang untuk {{ $payment->NIS }}</b></label>
+                  <b><input class="form-control" placeholder="Lain-lain" value="{{ $totalpiutang }}" name="lainnya" disabled></b>
                   {{ ($errors->has('lainnya')) ? $errors->first('lainnya') : '' }}
               </div>
           </form>
